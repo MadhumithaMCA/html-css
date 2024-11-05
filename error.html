@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful Registration Form</title>
+    <style>
+        /* Global Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #FFDDC1, #FF99BB);
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            width: 400px;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 1em;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+            font-size: 1em;
+        }
+
+        input:focus {
+            border-color: #ff6f61;
+            box-shadow: 0 0 5px rgba(255, 111, 97, 0.5);
+        }
+
+        .btn {
+            background-color: #ff6f61;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.2em;
+        }
+
+        .btn:hover {
+            background-color: #e55a4f;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        .success {
+            color: green;
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Register</h1>
+        <form id="registerForm">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username">
+            <div id="usernameError" class="error">Username is required</div>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+            <div id="emailError" class="error">Valid email is required</div>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+            <div id="passwordError" class="error">Password must be at least 6 characters</div>
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password">
+            <div id="confirmPasswordError" class="error">Passwords do not match</div>
+
+            <button type="submit" class="btn">Register</button>
+
+            <div id="successMessage" class="success"></div>
+        </form>
+    </div>
+
+    <script>
+        // Function to validate the form
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            // Get form elements
+            let username = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+
+            // Error message divs
+            let usernameError = document.getElementById("usernameError");
+            let emailError = document.getElementById("emailError");
+            let passwordError = document.getElementById("passwordError");
+            let confirmPasswordError = document.getElementById("confirmPasswordError");
+            let successMessage = document.getElementById("successMessage");
+
+            // Reset error visibility
+            usernameError.style.display = "none";
+            emailError.style.display = "none";
+            passwordError.style.display = "none";
+            confirmPasswordError.style.display = "none";
+            successMessage.style.display = "none";
+
+            let valid = true;
+
+            // Validate username
+            if (username === "") {
+                usernameError.style.display = "block";
+                valid = false;
+            }
+
+            // Validate email
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                emailError.style.display = "block";
+                valid = false;
+            }
+
+            // Validate password
+            if (password.length < 6) {
+                passwordError.style.display = "block";
+                valid = false;
+            }
+
+            // Validate confirm password
+            if (password !== confirmPassword) {
+                confirmPasswordError.style.display = "block";
+                valid = false;
+            }
+
+            // If valid, show success message
+            if (valid) {
+                successMessage.textContent = "Registration successful!";
+                successMessage.style.display = "block";
+            }
+        });
+    </script>
+
+</body>
+</html>
