@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Zone</title>
+    <link rel="stylesheet" href="shopping.css">
+</head>
+
+<body>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <h2>Shopping Zone</h2>
+        <ul>
+            <li><a href="#">Groceries</a></li>
+            <li><a href="#">Smartphones</a></li>
+            <li><a href="#">Backpacks</a></li>
+            <li><a href="#">Laptops</a></li>
+            <li><a href="#">Books</a></li>
+            <li><a href="#">Television</a></li>
+            <li><a href="#">Pharmacy</a></li>
+            <li><a href="#">Electrical Appliances</a></li>
+            <li><a href="#">Stationeries</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <input type="text" class="search-bar" placeholder="Search" aria-label="Search products">
+            <div class="user-info">
+                <span>Welcome, Madhumitha</span>
+                <a href="#" class="cart-link">Cart</a>
+                <a href="#" class="orders-link">Orders</a>
+            </div>
+        </header>
+
+        <!-- Offers Section -->
+        <section class="offers">
+            <div class="main-offer">
+                <h3>Biggest offer revealed</h3>
+                <h2>MORE DEALS INSIDE FLAT 20% OFFER</h2>
+                <img src="sofa image.png" alt="Sofa with a flat 20% offer">
+                <button class="wishlist-button">Add to Wishlist</button>
+            </div>
+
+            <div class="recently-viewed">
+                <h4>Recently Viewed</h4>
+                <div class="item">
+                    <img src="handbag.jpeg" alt="Handbag with a 30% discount">
+                    <p>Flat 30% offer on handpurses</p>
+                </div>
+                <div class="item">
+                    <img src="lamp.jpeg" alt="Decorative lamp starting at 299">
+                    <p>Decorative lamps start @ 299</p>
+                </div>
+                <div class="item">
+                    <img src="wallclocks.jpeg" alt="Wall clock starting at 599">
+                    <p>Wall clocks start @ 599</p>
+                </div>
+                <div class="item">
+                    <img src="harry-potter-series.png" alt="harry-potter-series">
+                    <p>combos start @ 399</p>
+                </div>
+                <div class="item">
+                    <img src="backpack.jpeg" alt="backpack">
+                    <p>backpack starts @ 299</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deals of the Day -->
+        <section class="deals">
+            <h3>Deals of the Day <span class="timer" id="countdown">20:10:12 LEFT</span></h3>
+            <div class="deal-items">
+                <div class="deal-item">
+                    <img src="laptop.jpg" alt="Laptop with 30% off">
+                    <p>Minimum 30% OFFER on selected laptops</p>
+                </div>
+                <div class="deal-item">
+                    <img src="cosmetics.jpeg" alt="Cosmetics with up to 40% off">
+                    <p>Minimum 40% OFF on cosmetics</p>
+                </div>
+                <div class="deal-item">
+                    <img src="sneakers.jpeg" alt="Sneakers with a flat 50% off">
+                    <p>FLAT 50% OFFER for branded sneakers</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Live countdown timer
+        const countdownElement = document.getElementById('countdown');
+        
+        function updateTimer() {
+            const endTime = new Date().getTime() + (20 * 60 * 1000); // 20 minutes countdown
+            
+            function update() {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+                
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdownElement.innerHTML = `${hours}:${minutes}:${seconds} LEFT`;
+
+                if (distance < 0) {
+                    clearInterval(timerInterval);
+                    countdownElement.innerHTML = "EXPIRED";
+                }
+            }
+
+            update();
+            const timerInterval = setInterval(update, 1000);
+        }
+
+        updateTimer(); // Start the timer
+    </script>
+</body>
+
+</html>
